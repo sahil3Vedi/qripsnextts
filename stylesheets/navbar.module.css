@@ -1,0 +1,27 @@
+.navbarTop{
+    background-color: green;
+    width: 100;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding: 10px 20px;
+}
+
+.navbarLogo{
+    width: 100px;
+    margin: 0px auto;
+}
+
+.navbarLogoDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbarIconDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+}
