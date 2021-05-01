@@ -8,8 +8,8 @@ const AboutPage = () => (
         <Navbar/>
         <h1>About 👋</h1>
         <p>
-            <Link href="/about">
-                <a>About</a>
+            <Link href="/home">
+                <a>Home</a>
             </Link>
         </p>
     </div>

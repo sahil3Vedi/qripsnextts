@@ -1,0 +1,19 @@
+.ant-drawer-body{
+    padding: 0px;
+}
+
+.ant-menu-inline .ant-menu-item{
+    margin-top: 0px;
+}
+
+.ant-menu-inline .ant-menu-item:not(:last-child){
+    margin-bottom: 0px;
+}
+
+.anticon-shopping{
+    cursor: pointer;
+}
+
+.anticon-menu{
+    cursor: pointer;
+}
