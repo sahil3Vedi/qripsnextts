@@ -46,11 +46,6 @@ const IndexPage = () => {
                 <p className="pageTitle">100% Vegan</p>
                 <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
                 <div className={homeStyles.homeLink}><a onClick={()=>navbarRef.current.openMenu()}>Explore More Categories</a></div>
-                <p>
-                    <Link href="/about">
-                        <a>About</a>
-                    </Link>
-                </p>
             </div>
         </div>
     )

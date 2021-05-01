@@ -3,18 +3,20 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'rea
 // NEXT
 import Link from 'next/link'
 // ANT
-import { Drawer, Menu } from 'antd'
-import { MenuOutlined, ShoppingOutlined } from '@ant-design/icons'
+import { Drawer, Menu, Avatar } from 'antd'
+import { MenuOutlined, ShoppingOutlined, SmileOutlined  } from '@ant-design/icons'
+const { SubMenu } = Menu
 // IMAGES
 import logoImage from '../images/qripstranspwhite.png'
 // CSS
 import navbarStyles from '../stylesheets/navbar.module.css'
+const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignItems: "center",fontSize: "30px",marginTop: "5px"}
 
 const Navbar = forwardRef((props, ref) => {
 
     const [menuVisible, setMenuVisible] = useState(false)
     const [currentMenu, setCurrentMenu] = useState("")
-    
+
     useEffect(() => {
         setCurrentMenu(window.location.pathname)
     }, [])
@@ -33,9 +35,69 @@ const Navbar = forwardRef((props, ref) => {
                 <div className={navbarStyles.navbarIconDiv}><ShoppingOutlined/></div>
             </div>
             <Drawer placement="left" closable={false} onClose={()=>setMenuVisible(false)} visible={menuVisible}>
-                <Menu onClick={()=>setMenuVisible(false)} style={{ width: 256 }} defaultSelectedKeys={[currentMenu]} mode="inline">
+                <div className={navbarStyles.navbarProfile}>
+                    <div className={navbarStyles.navbarAvatar}><Avatar size={40} icon={<SmileOutlined rotate={-23} style={navbarAvatarIconStyle}/>} style={{ color: '#008000', backgroundColor: 'rgb(246, 255, 237)' }}/></div>
+                    <div className={navbarStyles.navbarProfileDescription}>
+                        <div><p className={navbarStyles.navbarProfileSalutation}>Hi!</p></div>
+                        <div><p className={navbarStyles.navbarProfileLogin}><b>Login</b> to Qrips</p></div>
+                    </div>
+                </div>
+                <Menu onClick={()=>setMenuVisible(false)} style={{ width: 256 }} defaultSelectedKeys={[currentMenu==="/" ? "/home" : currentMenu]} mode="inline">
                     <Menu.Item key="/home"><Link href="/home">Home</Link></Menu.Item>
+                    <SubMenu key="sub2" title="Plant Based Dairy">
+                        <Menu.Item key="plant-based-cheese">Cheese</Menu.Item>
+                        <Menu.Item key="plant-based-milk">Milk</Menu.Item>
+                        <Menu.Item key="plant-based-buter">Butter</Menu.Item>
+                        <Menu.Item key="plant-based-tofu">Tofu</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub3" title="Plant Based Meat">
+                        <Menu.Item key="5">Frozen</Menu.Item>
+                        <Menu.Item key="6">Non Frozen</Menu.Item>
+                        <Menu.Item key="7">Poultry</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub4" title="Body Care">
+                        <Menu.Item key="8">Hair Care</Menu.Item>
+                        <Menu.Item key="9">Body Wash</Menu.Item>
+                        <Menu.Item key="10">Skin Care</Menu.Item>
+                        <Menu.Item key="11">Cosmetics</Menu.Item>
+                        <Menu.Item key="12">Perfumes</Menu.Item>
+                        <Menu.Item key="13">Hygiene</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub5" title="Nutrition">
+                        <Menu.Item key="14">Bars</Menu.Item>
+                        <Menu.Item key="15">Protein Powder</Menu.Item>
+                        <Menu.Item key="16">Supplements</Menu.Item>
+                        <Menu.Item key="17">Seeds</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub6" title="Grocery">
+                        <Menu.Item key="18">Tea</Menu.Item>
+                        <Menu.Item key="19">Coffee</Menu.Item>
+                        <Menu.Item key="20">Oil</Menu.Item>
+                        <Menu.Item key="21">Beverages</Menu.Item>
+                        <Menu.Item key="22">Sauces</Menu.Item>
+                        <Menu.Item key="23">Snacks</Menu.Item>
+                        <Menu.Item key="24">Dry Fruits</Menu.Item>
+                        <Menu.Item key="25">Sugar</Menu.Item>
+                        <Menu.Item key="26">Salt</Menu.Item>
+                        <Menu.Item key="27">Spices</Menu.Item>
+                        <Menu.Item key="28">Cereal</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub7" title="Chocolates">
+                        <Menu.Item key="29">Powder</Menu.Item>
+                        <Menu.Item key="30">Sugar Free</Menu.Item>
+                        <Menu.Item key="31">Bars</Menu.Item>
+                        <Menu.Item key="32">Spread</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub8" title="Bakery">
+                        <Menu.Item key="33">Cookies</Menu.Item>
+                        <Menu.Item key="34">Biscuits</Menu.Item>
+                        <Menu.Item key="35">Powder</Menu.Item>
+                        <Menu.Item key="36">Butter</Menu.Item>
+                        <Menu.Item key="37">Sugar</Menu.Item>
+                    </SubMenu>
+                    <Menu.Item key="/help">Help</Menu.Item>
                     <Menu.Item key="/about"><Link href="/about">About</Link></Menu.Item>
+                    <Menu.Item key="/legal">Legal</Menu.Item>
                 </Menu>
             </Drawer>
         </div>

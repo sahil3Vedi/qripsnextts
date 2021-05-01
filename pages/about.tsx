@@ -7,11 +7,6 @@ const AboutPage = () => (
         <GlobalStyle/>
         <Navbar/>
         <h1>About 👋</h1>
-        <p>
-            <Link href="/home">
-                <a>Home</a>
-            </Link>
-        </p>
     </div>
 )
 

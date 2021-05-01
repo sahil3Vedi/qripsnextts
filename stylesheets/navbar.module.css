@@ -25,3 +25,24 @@
     color: white;
     font-size: 30px;
 }
+
+.navbarProfile{
+    height: 80px;
+    background-color: green;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
+    color: white;
+}
+
+.navbarProfileSalutation{
+    font-size: 17px;
+    margin: 0px;
+    line-height: 18px
+}
+
+.navbarProfileLogin{
+    margin-top: 2px;
+    font-size: 15px;
+}
