@@ -1,5 +1,5 @@
 // REACT
-import React, {useRef, useState, createRef} from 'react'
+import React, {useRef, useState} from 'react'
 // NEXT
 import Link from 'next/link'
 // COMPONENTS

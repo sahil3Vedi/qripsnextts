@@ -45,15 +45,15 @@ const Navbar = forwardRef((props, ref) => {
                 <Menu onClick={()=>setMenuVisible(false)} style={{ width: 256 }} defaultSelectedKeys={[currentMenu==="/" ? "/home" : currentMenu]} mode="inline">
                     <Menu.Item key="/home"><Link href="/home">Home</Link></Menu.Item>
                     <SubMenu key="sub2" title="Plant Based Dairy">
-                        <Menu.Item key="plant-based-cheese">Cheese</Menu.Item>
-                        <Menu.Item key="plant-based-milk">Milk</Menu.Item>
-                        <Menu.Item key="plant-based-buter">Butter</Menu.Item>
-                        <Menu.Item key="plant-based-tofu">Tofu</Menu.Item>
+                        <Menu.Item key="/products/cheese"><Link href="/products/cheese">Cheese</Link></Menu.Item>
+                        <Menu.Item key="/products/milk"><Link href="/products/milk">Milk</Link></Menu.Item>
+                        <Menu.Item key="/products/butter"><Link href="/products/butter">Butter</Link></Menu.Item>
+                        <Menu.Item key="/products/tofu"><Link href="/products/tofu">Tofu</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub3" title="Plant Based Meat">
-                        <Menu.Item key="5">Frozen</Menu.Item>
-                        <Menu.Item key="6">Non Frozen</Menu.Item>
-                        <Menu.Item key="7">Poultry</Menu.Item>
+                        <Menu.Item key="/products/frozen meat"><Link href="/products/frozen meat">Frozen</Link></Menu.Item>
+                        <Menu.Item key="/products/non frozen meat"><Link href="/products/non frozen meat">Non Frozen</Link></Menu.Item>
+                        <Menu.Item key="/products/poultry"><Link href="/products/poultry">Poultry</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub4" title="Body Care">
                         <Menu.Item key="8">Hair Care</Menu.Item>

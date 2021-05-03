@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "antd": "^4.15.3",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "next": "latest",
     "next-images": "^1.7.0",
