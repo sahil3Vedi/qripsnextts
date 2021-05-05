@@ -57,7 +57,7 @@ const Products = () => {
                 :
                 <div className={shelfStyles.shelf}>
                 {
-                    products.map(d=><ItemPreview data={d}/>)
+                    products.map(d=><ItemPreview key={d._id} data={d}/>)
                 }
                 </div>
             }

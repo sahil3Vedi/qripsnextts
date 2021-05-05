@@ -2,4 +2,63 @@
     display: grid;
     grid-template-columns:  1fr 1fr;
     column-gap: 20px;
+    row-gap: 20px;
+}
+
+/* PRODUCT IMAGE */
+
+.productImageContainer{
+    position: relative;
+}
+
+.productImageBg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    z-index: 5;
+}
+
+.productImageBgSupport{
+    border-radius: 8px 8px 0px 0px;
+}
+
+.productImage{
+    position: relative;
+    margin-left: 10%;
+    width: 80%;
+    z-index: 10;
+}
+
+.productImageDiv{
+    z-index: 10;
+}
+
+/* PRODUCT INFO */
+
+.productInfo{
+    padding: 10px;
+    border-radius: 0px 0px 8px 8px;font-weight: bold;
+}
+
+.productWeightPricing{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    font-size: 17px;
+}
+
+.productCompany{
+    margin-bottom: 0px;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.productName{
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
