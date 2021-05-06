@@ -5,6 +5,28 @@
     row-gap: 20px;
 }
 
+.notFound{
+    margin-top: 100px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* Filters */
+
+.filterDiv{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    margin-bottom: 25px;
+}
+
+.filterTypeTitle{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
 /* PRODUCT IMAGE */
 
 .productImageContainer{
@@ -28,8 +50,9 @@
 
 .productImage{
     position: relative;
-    margin-left: 10%;
-    width: 80%;
+    margin-left: calc(50% - 63px);
+    width: 126px;
+    height: 126px;
     z-index: 10;
 }
 
@@ -48,17 +71,19 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     font-size: 17px;
+    font-weight: normal;
 }
 
 .productCompany{
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     font-size: 16px;
     line-height: 16px;
+    font-weight: normal;
 }
 
 .productName{
     font-size: 20px;
     line-height: 20px;
     margin-bottom: 10px;
-    font-weight: bold;
+    font-weight: normal;
 }
