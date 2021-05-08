@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 // NEXT
 import { useRouter } from 'next/router'
 // ANT
-import { Button, Modal, Table, Spin, Space, message,Checkbox, Slider, Row, Col, Empty } from 'antd'
+import { Button, Modal, Spin, message, Checkbox, Slider, Row, Col, Empty } from 'antd'
 import { FilterOutlined, CloseCircleOutlined } from '@ant-design/icons'
 // COMPONENTS
 import Navbar from '../../components/navbar'
@@ -14,39 +14,50 @@ import axios from 'axios'
 // CSS
 import shelfStyles from '../../stylesheets/shelf.module.css'
 
-const categoryMap = {
+const categoryMap: any = {
     "cheese":["Blocks","Shredded","Slices","Dips"]
 }
 
-function capitalize(str) {
+function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function capitalizeGroup(str) {
+function capitalizeGroup(str: any) {
     return str ? str.split(' ').map(capitalize).join(' ') : ""
+}
+
+interface Prod{
+    name: string,
+    color: string,
+    company: string,
+    tags: string[],
+    unit_price: number,
+    unit_weight: number,
+    imgs: string[],
+    _id: string,
+    description: string
 }
 
 const Products = () => {
 
     const router = useRouter()
     const category = router.query.category
-    const [currentRoute, setCurrentRoute] = useState('')
     const [loadingProducts, setLoadingProducts] = useState(true)
-    const [products, setProducts] = useState([])
-    const [filteredProducts, setFilteredProducts] = useState([])
+    const [products, setProducts] = useState<Prod[]>([])
+    const [filteredProducts, setFilteredProducts] = useState<Prod[]>([])
 
     const [filterVisible, setFilterVisible] = useState(false)
-    const [filterCategories, setFilterCategories] = useState([])
-    const [filterCompanies, setFilterCompanies] = useState([])
+    const [filterCategories, setFilterCategories] = useState<any[]>([])
+    const [filterCompanies, setFilterCompanies] = useState<any[]>([])
     const [minFilterPrice, setMinFilterPrice] = useState(100)
     const [maxFilterPrice, setMaxFilterPrice] = useState(1500)
-    const [categories, setCategories] = useState([])
+    const [categories, setCategories] = useState<string[]>([])
     const [companies, setCompanies] = useState([])
 
     useEffect(() => {
         axios.get(`${process.env.NEXT_PUBLIC_BACKEND}dummy/fetchAll/${window.location.pathname.split('/')[2]}`)
         .then(res=>{
-            let product_companies = res.data.message.map(d=>d.company).filter((v, i, a) => a.indexOf(v) === i)
+            let product_companies = res.data.message.map((d: any)=>d.company).filter((v: any, i: any, a: any) => a.indexOf(v) === i)
             setLoadingProducts(true)
             setProducts(res.data.message)
             setFilteredProducts(res.data.message)
@@ -59,16 +70,21 @@ const Products = () => {
         })
     }, [category])
 
-    const handleFilterPrice = (value) => {
+    const handleFilterPrice = (value: any) => {
         setMinFilterPrice(value[0])
         setMaxFilterPrice(value[1])
     }
 
     const applyFilter = () => {
-        let temp_products = []
+        let temp_products: Prod[] = []
         for (var product in products){
-            let productInstance = products[product]
-            if ( (productInstance.unit_price>=minFilterPrice) && (productInstance.unit_price<=maxFilterPrice) && (!filterCompanies.length || filterCompanies.includes(productInstance.company)) && (!filterCategories.length || filterCategories.some(i=>productInstance.tags.includes(i))) ){
+            let productInstance: Prod = products[product]
+            if (
+                (productInstance['unit_price']>=minFilterPrice) &&
+                (productInstance['unit_price']<=maxFilterPrice) &&
+                (!(filterCompanies || []).length || (filterCompanies!.includes(productInstance['company']))) &&
+                (!filterCategories.length || filterCategories.some(i=>productInstance['tags'].includes(i)))
+               ){
                 temp_products.push(productInstance)
             }
         }

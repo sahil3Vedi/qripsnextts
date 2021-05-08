@@ -7,12 +7,13 @@ import { Drawer, Menu, Avatar } from 'antd'
 import { MenuOutlined, ShoppingOutlined, SmileOutlined  } from '@ant-design/icons'
 const { SubMenu } = Menu
 // IMAGES
-import logoImage from '../images/qripstranspwhite.png'
+//import imageModule from '../types/images'
+const logoImage = require('../images/qripstranspwhite.png')
 // CSS
 import navbarStyles from '../stylesheets/navbar.module.css'
 const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignItems: "center",fontSize: "30px",marginTop: "5px"}
 
-const Navbar = forwardRef((props, ref) => {
+const Navbar = forwardRef((ref: any) => {
 
     const [menuVisible, setMenuVisible] = useState(false)
     const [currentMenu, setCurrentMenu] = useState("")

@@ -1,7 +1,5 @@
 // REACT
-import React, {useRef, useState} from 'react'
-// NEXT
-import Link from 'next/link'
+import React, {useRef} from 'react'
 // COMPONENTS
 import Navbar from '../components/navbar'
 import GlobalStyle from '../stylesheets/globalStyle'
@@ -23,7 +21,7 @@ const home_categories = [
     {color:"#D2E7FF",name:"Butter",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/276537/butter-butter.svg'}
 ]
 
-const getCategoryDiv = (d) => {
+const getCategoryDiv = (d: any) => {
     let svgurl = d.svgurl
         return (
         <div key={d.name}>
@@ -37,7 +35,6 @@ const getCategoryDiv = (d) => {
 
 const IndexPage = () => {
     const navbarRef = useRef()
-    console.log(navbarRef)
     return (
         <div>
             <GlobalStyle/>
@@ -45,7 +42,7 @@ const IndexPage = () => {
             <div className="pageContent">
                 <p className="pageTitle">100% Vegan</p>
                 <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
-                <div className={homeStyles.homeLink}><a onClick={()=>navbarRef.current.openMenu()}>Explore More Categories</a></div>
+                <div className={homeStyles.homeLink}><a onClick={(navbarRef: any)=>navbarRef['current']!.openMenu()}>Explore More Categories</a></div>
             </div>
         </div>
     )

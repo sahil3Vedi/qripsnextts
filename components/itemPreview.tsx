@@ -1,6 +1,6 @@
 import shelfStyles from '../stylesheets/shelf.module.css'
 
-const ItemPreview = (props) => {
+const ItemPreview = (props: any) => {
     return (
         <div>
             <div className={shelfStyles.productImageContainer}>
