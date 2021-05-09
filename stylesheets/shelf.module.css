@@ -18,6 +18,7 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     margin-bottom: 25px;
+    margin-top: 15px;
 }
 
 .filterTypeTitle{

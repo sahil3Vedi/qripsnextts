@@ -1,0 +1,10 @@
+.label{
+    margin: 0px 0px 5px 0px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.signupLink{
+    text-align: center;
+    margin-top: 20px;
+}

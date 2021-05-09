@@ -34,15 +34,18 @@ const getCategoryDiv = (d: any) => {
 }
 
 const IndexPage = () => {
-    const navbarRef = useRef()
+    const navbarRef = useRef<any>()
+    const openMenu = () => {
+        navbarRef['current']!.openMenu()
+    }
     return (
         <div>
             <GlobalStyle/>
             <Navbar ref={navbarRef}/>
             <div className="pageContent">
-                <p className="pageTitle">100% Vegan</p>
+                <p className="pageTitle primaryColorUnderline">100% Vegan</p>
                 <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
-                <div className={homeStyles.homeLink}><a onClick={(navbarRef: any)=>navbarRef['current']!.openMenu()}>Explore More Categories</a></div>
+                <div className={homeStyles.homeLink}><a onClick={openMenu}>Explore More Categories</a></div>
             </div>
         </div>
     )

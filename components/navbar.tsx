@@ -13,7 +13,7 @@ const logoImage = require('../images/qripstranspwhite.png')
 import navbarStyles from '../stylesheets/navbar.module.css'
 const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignItems: "center",fontSize: "30px",marginTop: "5px"}
 
-const Navbar = forwardRef((ref: any) => {
+const Navbar = forwardRef(({}, ref: any) => {
 
     const [menuVisible, setMenuVisible] = useState(false)
     const [currentMenu, setCurrentMenu] = useState("")
@@ -40,7 +40,7 @@ const Navbar = forwardRef((ref: any) => {
                     <div className={navbarStyles.navbarAvatar}><Avatar size={40} icon={<SmileOutlined rotate={-23} style={navbarAvatarIconStyle}/>} style={{ color: '#008000', backgroundColor: 'rgb(246, 255, 237)' }}/></div>
                     <div className={navbarStyles.navbarProfileDescription}>
                         <div><p className={navbarStyles.navbarProfileSalutation}>Hi!</p></div>
-                        <div><p className={navbarStyles.navbarProfileLogin}><b>Login</b> to Qrips</p></div>
+                        <div><p className={navbarStyles.navbarProfileLogin}><Link href="/login"><b style={{color:"white",cursor:"pointer"}} onClick={()=>setMenuVisible(false)}>Login</b></Link> to Qrips</p></div>
                     </div>
                 </div>
                 <Menu onClick={()=>setMenuVisible(false)} style={{ width: 256 }} defaultSelectedKeys={[currentMenu==="/" ? "/home" : currentMenu]} mode="inline">

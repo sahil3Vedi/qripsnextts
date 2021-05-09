@@ -55,10 +55,12 @@ const Products = () => {
     const [companies, setCompanies] = useState([])
 
     useEffect(() => {
+        setProducts([])
+        setFilteredProducts([])
+        setLoadingProducts(true)
         axios.get(`${process.env.NEXT_PUBLIC_BACKEND}dummy/fetchAll/${window.location.pathname.split('/')[2]}`)
         .then(res=>{
             let product_companies = res.data.message.map((d: any)=>d.company).filter((v: any, i: any, a: any) => a.indexOf(v) === i)
-            setLoadingProducts(true)
             setProducts(res.data.message)
             setFilteredProducts(res.data.message)
             setLoadingProducts(false)
@@ -119,7 +121,7 @@ const Products = () => {
             <GlobalStyle/>
             <Navbar/>
             <div className="pageContent">
-                <p className="pageTitle">{capitalizeGroup(router.query.category)}</p>
+                <p className="pageTitle primaryColorUnderline">{capitalizeGroup(router.query.category)}</p>
                 <div className={shelfStyles.filterDiv}>
                     <div>{products.length ? <Button type="primary" icon={<FilterOutlined/>} onClick={()=>setFilterVisible(true)}>Filter</Button> : null}</div>
                     <div></div>
