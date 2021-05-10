@@ -3,6 +3,7 @@ import React, {useRef} from 'react'
 // COMPONENTS
 import Navbar from '../components/navbar'
 import GlobalStyle from '../stylesheets/globalStyle'
+import Footer from '../components/footer'
 // CSS
 import homeStyles from '../stylesheets/home.module.css'
 
@@ -41,11 +42,14 @@ const IndexPage = () => {
     return (
         <div>
             <GlobalStyle/>
-            <Navbar ref={navbarRef}/>
-            <div className="pageContent">
-                <p className="pageTitle primaryColorUnderline">100% Vegan</p>
-                <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
-                <div className={homeStyles.homeLink}><a onClick={openMenu}>Explore More Categories</a></div>
+            <div className="pageWrapper">
+                <Navbar ref={navbarRef}/>
+                <div className="pageContent">
+                    <p className="pageTitle primaryColorUnderline">100% Vegan</p>
+                    <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
+                    <div className={homeStyles.homeLink}><a onClick={openMenu}>Explore More Categories</a></div>
+                </div>
+                <Footer/>
             </div>
         </div>
     )

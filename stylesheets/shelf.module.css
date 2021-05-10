@@ -5,6 +5,22 @@
     row-gap: 20px;
 }
 
+.shelfWrapper{
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+}
+
+.shelfContainer{
+    min-height: 100%;
+}
+
+.shelfBody{
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
 .notFound{
     margin-top: 100px;
     margin-left: 50%;
@@ -17,8 +33,8 @@
 .filterDiv{
     display: grid;
     grid-template-columns: auto 1fr auto;
-    margin-bottom: 25px;
-    margin-top: 15px;
+    padding-bottom: 25px;
+    padding-top: 5px;
 }
 
 .filterTypeTitle{
@@ -91,7 +107,7 @@
 /* Pagination */
 
 .paginationDiv{
-    margin: 30px auto;
+    padding-top: 30px;
     display: flex;
     justify-content: center;
 }

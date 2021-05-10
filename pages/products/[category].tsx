@@ -9,6 +9,7 @@ import { FilterOutlined, CloseCircleOutlined } from '@ant-design/icons'
 import Navbar from '../../components/navbar'
 import GlobalStyle from '../../stylesheets/globalStyle'
 import ItemPreview from '../../components/itemPreview'
+import Footer from '../../components/footer'
 // AXIOS
 import axios from 'axios'
 // CSS
@@ -80,6 +81,7 @@ const Products = () => {
     }
 
     const applyFilter = () => {
+        setCurrentPage(1)
         let temp_products: Prod[] = []
         for (var product in products){
             let productInstance: Prod = products[product]
@@ -94,7 +96,6 @@ const Products = () => {
         }
         setFilteredProducts(temp_products)
         setFilterVisible(false)
-        setCurrentPage(1)
         window.scrollTo(0, 0)
         message.success("Filter Applied")
     }
@@ -102,6 +103,7 @@ const Products = () => {
     const clearFilter = () => {
         setFilteredProducts(products)
         window.scrollTo(0, 0)
+        setCurrentPage(1)
         message.success("Filter Removed")
     }
 
@@ -130,40 +132,47 @@ const Products = () => {
         <div>
             {filter}
             <GlobalStyle/>
-            <Navbar/>
-            <div className="pageContent">
-                <p className="pageTitle primaryColorUnderline">{capitalizeGroup(router.query.category)}</p>
-                <div className={shelfStyles.filterDiv}>
-                    <div>{products.length ? <Button type="primary" icon={<FilterOutlined/>} onClick={()=>setFilterVisible(true)}>Filter</Button> : null}</div>
-                    <div></div>
-                    <div>
-                        {
-                            products.length===filteredProducts.length
-                            ?
-                            null
-                            :
-                            <Button danger={true} type="primary" icon={<CloseCircleOutlined/>} onClick={()=>clearFilter()}>Clear Filter</Button>
-                        }
-                    </div>
-                </div>
-                {
-                    loadingProducts ?
-                    <div className="div-spinner"><Spin/></div>
-                    :
-                    (
-                        filteredProducts.length ?
-                        <div>
-                            <div className={shelfStyles.shelf}>
-                                {filteredProducts.slice((currentPage-1)*10, (currentPage)*10).map(d=><ItemPreview key={d._id} data={d}/>)}
-                            </div>
-                            <div className={shelfStyles.paginationDiv}>
-                                <Pagination defaultCurrent={currentPage} total={filteredProducts.length + 1} onChange={updatePage}/>
+            <div className="pageWrapper">
+                <Navbar/>
+                <div className="pageContent">
+                    <div className={shelfStyles.shelfWrapper}>
+                        <div><p className="pageTitle primaryColorUnderline">{capitalizeGroup(router.query.category)}</p></div>
+                        <div className={shelfStyles.filterDiv}>
+                            <div>{products.length ? <Button type="primary" icon={<FilterOutlined/>} onClick={()=>setFilterVisible(true)}>Filter</Button> : null}</div>
+                            <div></div>
+                            <div>
+                                {
+                                    products.length===filteredProducts.length
+                                    ?
+                                    null
+                                    :
+                                    <Button danger={true} type="primary" icon={<CloseCircleOutlined/>} onClick={()=>clearFilter()}>Clear Filter</Button>
+                                }
                             </div>
                         </div>
-                        :
-                        <Empty className={shelfStyles.notFound} image={Empty.PRESENTED_IMAGE_SIMPLE} description={<p>No Products Found</p>}/>
-                    )
-                }
+                        <div className={shelfStyles.shelfContainer}>
+                            {
+                                loadingProducts ?
+                                <div className="div-spinner"><Spin/></div>
+                                :
+                                (
+                                    filteredProducts.length ?
+                                    <div className={shelfStyles.shelfBody}>
+                                        <div><div className={shelfStyles.shelf}>
+                                            {filteredProducts.slice((currentPage-1)*10, (currentPage)*10).map(d=><ItemPreview key={d._id} data={d}/>)}
+                                        </div></div>
+                                        <div className={shelfStyles.paginationDiv}>
+                                            <Pagination current={currentPage} total={filteredProducts.length + 1} onChange={updatePage}/>
+                                        </div>
+                                    </div>
+                                    :
+                                    <Empty className={shelfStyles.notFound} image={Empty.PRESENTED_IMAGE_SIMPLE} description={<p>No Products Found</p>}/>
+                                )
+                            }
+                        </div>
+                    </div>
+                </div>
+                <Footer/>
             </div>
         </div>
     )

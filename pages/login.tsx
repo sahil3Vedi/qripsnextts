@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 // COMPONENTS
 import Navbar from '../components/navbar'
 import GlobalStyle from '../stylesheets/globalStyle'
+import Footer from '../components/footer'
 // ANT
 import { Form, Input, Button, Divider, message } from 'antd';
 // CSS
@@ -49,12 +50,15 @@ const LoginPage = () => {
     return (
         <div>
             <GlobalStyle/>
-            <Navbar/>
-            <div className="pageContent">
-                <h1 className="primaryColorUnderline pageTitle">{signup ? "Sign Up" : "Sign In"}</h1>
-                {signup ? signupForm : signinForm}
-                <Divider>{signup ? "Already Registered?" : "New To Qrips?"}</Divider>
-                <div className={signinStyles.signupLink}><Button type="primary" onClick={toggleSignup}>{signup ? "Sign In" : "Create Account"}</Button></div>
+            <div className="pageWrapper">
+                <Navbar/>
+                <div className="pageContent">
+                    <h1 className="primaryColorUnderline pageTitle">{signup ? "Sign Up" : "Sign In"}</h1>
+                    {signup ? signupForm : signinForm}
+                    <Divider>{signup ? "Already Registered?" : "New To Qrips?"}</Divider>
+                    <div className={signinStyles.signupLink}><Button type="primary" onClick={toggleSignup}>{signup ? "Sign In" : "Create Account"}</Button></div>
+                </div>
+                <Footer/>
             </div>
         </div>
     )
