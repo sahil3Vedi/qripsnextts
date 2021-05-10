@@ -3,7 +3,7 @@ import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'rea
 // NEXT
 import Link from 'next/link'
 // ANT
-import { Drawer, Menu, Avatar } from 'antd'
+import { Drawer, Menu, Avatar, Affix } from 'antd'
 import { MenuOutlined, ShoppingOutlined, SmileOutlined  } from '@ant-design/icons'
 const { SubMenu } = Menu
 // IMAGES
@@ -30,11 +30,13 @@ const Navbar = forwardRef(({}, ref: any) => {
 
     return(
         <div>
+            <Affix>
             <div className={navbarStyles.navbarTop}>
                 <div className={navbarStyles.navbarIconDiv} onClick={()=>setMenuVisible(true)}><MenuOutlined/></div>
                 <div className={navbarStyles.navbarLogoDiv}><img className={navbarStyles.navbarLogo} src={logoImage}/></div>
                 <div className={navbarStyles.navbarIconDiv}><ShoppingOutlined/></div>
             </div>
+            </Affix>
             <Drawer placement="left" closable={false} onClose={()=>setMenuVisible(false)} visible={menuVisible}>
                 <div className={navbarStyles.navbarProfile}>
                     <div className={navbarStyles.navbarAvatar}><Avatar size={40} icon={<SmileOutlined rotate={-23} style={navbarAvatarIconStyle}/>} style={{ color: '#008000', backgroundColor: 'rgb(246, 255, 237)' }}/></div>

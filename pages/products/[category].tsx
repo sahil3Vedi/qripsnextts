@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 // NEXT
 import { useRouter } from 'next/router'
 // ANT
-import { Button, Modal, Spin, message, Checkbox, Slider, Row, Col, Empty } from 'antd'
+import { Button, Modal, Spin, message, Checkbox, Slider, Row, Col, Empty, Pagination } from 'antd'
 import { FilterOutlined, CloseCircleOutlined } from '@ant-design/icons'
 // COMPONENTS
 import Navbar from '../../components/navbar'
@@ -53,6 +53,7 @@ const Products = () => {
     const [maxFilterPrice, setMaxFilterPrice] = useState(1500)
     const [categories, setCategories] = useState<string[]>([])
     const [companies, setCompanies] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         setProducts([])
@@ -66,6 +67,7 @@ const Products = () => {
             setLoadingProducts(false)
             setCompanies(product_companies)
             setCategories(categoryMap[window.location.pathname.split('/')[2]] ? categoryMap[window.location.pathname.split('/')[2]] : [])
+            setCurrentPage(1)
         })
         .catch(e=>{
             console.log(e)
@@ -92,16 +94,19 @@ const Products = () => {
         }
         setFilteredProducts(temp_products)
         setFilterVisible(false)
+        setCurrentPage(1)
+        window.scrollTo(0, 0)
         message.success("Filter Applied")
     }
 
     const clearFilter = () => {
         setFilteredProducts(products)
+        window.scrollTo(0, 0)
         message.success("Filter Removed")
     }
 
     const filter = (
-        <Modal centered title="Filter Products" visible={filterVisible} onOk={()=>applyFilter()} onCancel={()=>setFilterVisible(false)}>
+        <Modal centered title="Filter Products" visible={filterVisible} onOk={()=>applyFilter()} onCancel={()=>setFilterVisible(false)} okText="Apply">
             <p className={shelfStyles.filterTypeTitle} style={{marginTop: 0}}>Category</p>
             <Checkbox.Group style={{ width: '100%' }} onChange={setFilterCategories}>
                 {categories.map(d=><Row key={d}><Col><Checkbox value={d.toLowerCase()}>{d}</Checkbox></Col></Row>)}
@@ -114,6 +119,12 @@ const Products = () => {
             <Slider range step={100} defaultValue={[100, 1500]} min={100} max={1500} onChange={handleFilterPrice} tipFormatter={(value)=>`₹ ${value}`}/>
         </Modal>
     )
+
+    const updatePage = (value: number) => {
+        window.scrollTo(0, 0)
+        setCurrentPage(value)
+    }
+
 
     return (
         <div>
@@ -141,7 +152,14 @@ const Products = () => {
                     :
                     (
                         filteredProducts.length ?
-                        <div className={shelfStyles.shelf}>{filteredProducts.map(d=><ItemPreview key={d._id} data={d}/>)}</div>
+                        <div>
+                            <div className={shelfStyles.shelf}>
+                                {filteredProducts.slice((currentPage-1)*10, (currentPage)*10).map(d=><ItemPreview key={d._id} data={d}/>)}
+                            </div>
+                            <div className={shelfStyles.paginationDiv}>
+                                <Pagination defaultCurrent={currentPage} total={filteredProducts.length + 1} onChange={updatePage}/>
+                            </div>
+                        </div>
                         :
                         <Empty className={shelfStyles.notFound} image={Empty.PRESENTED_IMAGE_SIMPLE} description={<p>No Products Found</p>}/>
                     )
