@@ -1,0 +1,39 @@
+.productCompany{
+    margin-bottom: 0;
+    margin-top: 40px;
+    font-size: 25px;
+    line-height: 25px;
+}
+
+.productName{
+    font-size: 30px;
+    line-height: 30px;
+    margin-top: 5px;
+}
+
+.productImage{
+    width: 100%;
+}
+
+.productInfo{
+    display: relative;
+}
+
+.carouselDiv{
+    background-color: blue;
+}
+
+.productDescription{
+    color: #2f2f2f;
+    margin-bottom: 30px;
+}
+
+.btnWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.btnAddToCart{
+    color: #008000;
+    border: 1px solid #008000;
+}

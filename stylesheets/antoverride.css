@@ -23,7 +23,6 @@
     margin-bottom: 20px;
     padding: 30px 50px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.05);
     border-radius: 4px;
 }
 
@@ -43,4 +42,21 @@
 
 .ant-drawer-close svg{
     color: #008000;
+}
+
+.ant-carousel{
+    max-width: 300px;
+    margin-left: calc(50% - 150px)
+}
+
+.ant-carousel .slick-dots li button{
+    background-color: #008000 !important;
+}
+
+.ant-carousel .slick-dots-bottom{
+    bottom: -20px;
+}
+
+.ant-carousel ul{
+    margin-bottom: 0px;
 }

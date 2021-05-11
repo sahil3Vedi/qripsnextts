@@ -19,7 +19,7 @@
 }
 
 .primaryColorUnderline{
-    text-decoration: underline #52c41a;
+    text-decoration: underline #008000;
 }
 
 .footer{
@@ -27,4 +27,8 @@
     text-align: center;
     padding: 20px;
     color: white;
+}
+
+a{
+    color: #008000;
 }
