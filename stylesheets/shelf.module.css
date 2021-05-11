@@ -7,16 +7,19 @@
 
 .shelfWrapper{
     min-height: 100%;
+    height: auto !important;
     display: grid;
     grid-template-rows: auto auto 1fr;
 }
 
 .shelfContainer{
-    min-height: 100%;
+    /*min-height: 100%;
+    height: auto !important;*/
 }
 
 .shelfBody{
     min-height: 100%;
+    height: auto !important;
     display: grid;
     grid-template-rows: 1fr auto;
 }
@@ -110,4 +113,5 @@
     padding-top: 30px;
     display: flex;
     justify-content: center;
+    bottom: 0;
 }
