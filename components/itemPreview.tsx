@@ -1,4 +1,5 @@
 import shelfStyles from '../stylesheets/shelf.module.css'
+import { Button } from 'antd'
 
 const ItemPreview = (props: any) => {
     return (
@@ -14,6 +15,9 @@ const ItemPreview = (props: any) => {
                     <div className={shelfStyles.productWeight}><p>&#x20B9;{props.data.unit_price}/-</p></div>
                     <div></div>
                     <div className={shelfStyles.productWeight}><p>{props.data.unit_weight}g</p></div>
+                </div>
+                <div className={shelfStyles.btnWrapper}>
+                    <Button className={shelfStyles.btnAddToCart}>Add To Cart</Button>
                 </div>
             </div>
         </div>

@@ -34,3 +34,13 @@
 .ant-modal-body{
     padding: 14px 24px;
 }
+
+.ant-drawer-title{
+    color: #008000;
+    font-size: 20px;
+    margin-top: 3px;
+}
+
+.ant-drawer-close svg{
+    color: #008000;
+}

@@ -46,3 +46,19 @@
     margin-top: 2px;
     font-size: 15px;
 }
+
+/* CART */
+
+.emptyCartWrapper{
+    text-align: center;
+}
+
+.emptyCartWrapper p, .emptyCartWrapper a{
+    font-size: 18px;
+    margin-bottom: 0px;
+}
+
+.emptyCartImage{
+    width: 70%;
+    margin-top: 50px;
+}

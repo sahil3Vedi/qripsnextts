@@ -9,6 +9,7 @@ const { SubMenu } = Menu
 // IMAGES
 //import imageModule from '../types/images'
 const logoImage = require('../images/qripstranspwhite.png')
+const emptyCartImage = require('../images/emptyCart.png')
 // CSS
 import navbarStyles from '../stylesheets/navbar.module.css'
 const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignItems: "center",fontSize: "30px",marginTop: "5px"}
@@ -16,6 +17,7 @@ const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignIte
 const Navbar = forwardRef(({}, ref: any) => {
 
     const [menuVisible, setMenuVisible] = useState(false)
+    const [cartVisible, setCartVisible] = useState(false)
     const [currentMenu, setCurrentMenu] = useState("")
 
     useEffect(() => {
@@ -34,7 +36,7 @@ const Navbar = forwardRef(({}, ref: any) => {
             <div className={navbarStyles.navbarTop}>
                 <div className={navbarStyles.navbarIconDiv} onClick={()=>setMenuVisible(true)}><MenuOutlined/></div>
                 <div className={navbarStyles.navbarLogoDiv}><img className={navbarStyles.navbarLogo} src={logoImage}/></div>
-                <div className={navbarStyles.navbarIconDiv}><ShoppingOutlined/></div>
+                <div className={navbarStyles.navbarIconDiv} onClick={()=>setCartVisible(true)}><ShoppingOutlined/></div>
             </div>
             </Affix>
             <Drawer placement="left" closable={false} onClose={()=>setMenuVisible(false)} visible={menuVisible}>
@@ -102,6 +104,13 @@ const Navbar = forwardRef(({}, ref: any) => {
                     <Menu.Item key="/about"><Link href="/about">About</Link></Menu.Item>
                     <Menu.Item key="/legal">Legal</Menu.Item>
                 </Menu>
+            </Drawer>
+            <Drawer placement="right" closable onClose={()=>setCartVisible(false)} visible={cartVisible} title="Your Cart">
+                <div className={navbarStyles.emptyCartWrapper}>
+                    <img src={emptyCartImage} className={navbarStyles.emptyCartImage}/>
+                    <p>Your Cart Is Empty</p>
+                    <a onClick={()=>setCartVisible(false)}>Back to Shop</a>
+                </div>
             </Drawer>
         </div>
     )
