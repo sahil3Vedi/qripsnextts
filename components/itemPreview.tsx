@@ -10,10 +10,10 @@ const ItemPreview = (props: any) => {
         <div>
             <div className={shelfStyles.productImageContainer}>
                 <div className={shelfStyles.productImageBg}><div></div><div className={shelfStyles.productImageBgSupport} style={{backgroundColor: props.data.color}}></div></div>
-                <div className={shelfStyles.productImageDiv}><img src={props.data.imgs[0]} className={shelfStyles.productImage} alt="product preview" loading="lazy"/></div>
+                <div className={shelfStyles.productImageDiv}><Link href={`/product/${props.data.company} ${props.data.name}`}><img src={props.data.imgs[0]} className={shelfStyles.productImage} alt="product preview" loading="lazy"/></Link></div>
             </div>
             <div className={shelfStyles.productInfo} style={{backgroundColor: props.data.color}}>
-                <Link href={`/product/${props.data.company} ${props.data.name}`}><div>
+                <Link href={`/product/${props.data.company} ${props.data.name}`}><div className="pointer">
                 <p className={shelfStyles.productCompany}> {props.data.company} </p>
                 <p className={shelfStyles.productName}> {props.data.name} </p>
                 <div className={shelfStyles.productWeightPricing}>

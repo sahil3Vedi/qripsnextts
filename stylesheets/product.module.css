@@ -6,8 +6,8 @@
 }
 
 .productName{
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 35px;
+    line-height: 35px;
     margin-top: 5px;
 }
 
@@ -19,13 +19,10 @@
     display: relative;
 }
 
-.carouselDiv{
-    background-color: blue;
-}
-
 .productDescription{
     color: #2f2f2f;
     margin-bottom: 30px;
+    font-size: 18px;
 }
 
 .btnWrapper{
@@ -36,4 +33,14 @@
 .btnAddToCart{
     color: #008000;
     border: 1px solid #008000;
+}
+
+.productWeightPricing{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    font-size: 25px;
+}
+
+.goBack{
+    margin-bottom: 25px;
 }

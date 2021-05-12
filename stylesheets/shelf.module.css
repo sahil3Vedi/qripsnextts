@@ -73,6 +73,7 @@
     width: 126px;
     height: 126px;
     z-index: 5;
+    cursor: pointer;
 }
 
 .productImageDiv{
