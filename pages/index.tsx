@@ -13,7 +13,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import axios from 'axios'
 
 interface SearchValue{
-    label: string;
+    text: string;
     value: string;
 }
 
@@ -47,24 +47,26 @@ const getCategoryDiv = (d: any) => {
 const IndexPage = () => {
     const [searchLoading, setSearchLoading] = useState(false)
     const [searchOptions, setSearchOptions] = useState<SearchValue[]>([])
-    const [searchValue, setSearchValue] = useState("")
+    const [searchValue, setSearchValue] = useState<any>("")
     const navbarRef = useRef<any>()
 
     const openMenu = () => {
         navbarRef['current']!.openMenu()
     }
 
-    const handleSearch = (value) => {
+    const handleSearch = (value: any) => {
         axios.post(`${process.env.NEXT_PUBLIC_BACKEND}dummy/search`,{val: value ? value : " "})
         .then(res=>{
+            setSearchLoading(true)
             let resOptions = []
             for(var prod in res.data.message){
                 let prodInst = res.data.message[prod]
-                let prodObj = {value:`${prodInst.company} ${prodInst.name} `,text:`${prodInst.company} ${prodInst.name} `}
+                let prodObj: SearchValue = {value:`${prodInst.company} ${prodInst.name} `,text:`${prodInst.company} ${prodInst.name} `}
                 resOptions.push(prodObj)
             }
             console.log(resOptions)
             setSearchOptions(resOptions)
+            setSearchLoading(false)
         })
     }
 
@@ -76,7 +78,7 @@ const IndexPage = () => {
             <div className="pageWrapper">
                 <Navbar ref={navbarRef}/>
                 <div className="pageContent">
-                    <Select suffixIcon={<SearchOutlined />} allowClear showSearch onSearch={handleSearch} value={searchValue ? searchValue : null} placeholder={"Search From 1000+ Products"} style={{width: "100%", marginBottom: "20px"}} defaultActiveFirstOption={false} filterOption={false} notFoundContent={searchLoading ? <Spin size="small" /> : null} options={searchOptions}/>
+                    <Select suffixIcon={<SearchOutlined />} allowClear showSearch onSearch={handleSearch} onChange={setSearchValue} value={searchValue ? searchValue : null} placeholder={"Search From 1000+ Products"} style={{width: "100%", marginBottom: "20px"}} defaultActiveFirstOption={false} filterOption={false} notFoundContent={searchLoading ? <Spin size="small" /> : null} options={searchOptions}/>
                     <p className="pageTitle primaryColorUnderline">100% Vegan</p>
                     <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
                     <div className={homeStyles.homeLink}><a onClick={openMenu}>Explore More Categories</a></div>
