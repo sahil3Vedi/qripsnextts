@@ -1,3 +1,5 @@
+// NEXT
+import { useRouter } from 'next/router'
 // REACT
 import React, {useRef, useState} from 'react'
 // COMPONENTS
@@ -45,10 +47,12 @@ const getCategoryDiv = (d: any) => {
 }
 
 const IndexPage = () => {
+    const router = useRouter()
+    const navbarRef = useRef<any>()
+
     const [searchLoading, setSearchLoading] = useState(false)
     const [searchOptions, setSearchOptions] = useState<SearchValue[]>([])
     const [searchValue, setSearchValue] = useState<any>("")
-    const navbarRef = useRef<any>()
 
     const openMenu = () => {
         navbarRef['current']!.openMenu()
@@ -64,10 +68,14 @@ const IndexPage = () => {
                 let prodObj: SearchValue = {value:`${prodInst.company} ${prodInst.name} `,text:`${prodInst.company} ${prodInst.name} `}
                 resOptions.push(prodObj)
             }
-            console.log(resOptions)
             setSearchOptions(resOptions)
             setSearchLoading(false)
         })
+    }
+
+    const handleSearchSelect = (value: any) => {
+        router.push(`/product/${value}`)
+        setSearchValue(value)
     }
 
     console.log(searchOptions)
@@ -78,7 +86,7 @@ const IndexPage = () => {
             <div className="pageWrapper">
                 <Navbar ref={navbarRef}/>
                 <div className="pageContent">
-                    <Select suffixIcon={<SearchOutlined />} allowClear showSearch onSearch={handleSearch} onChange={setSearchValue} value={searchValue ? searchValue : null} placeholder={"Search From 1000+ Products"} style={{width: "100%", marginBottom: "20px"}} defaultActiveFirstOption={false} filterOption={false} notFoundContent={searchLoading ? <Spin size="small" /> : null} options={searchOptions}/>
+                    <Select suffixIcon={<SearchOutlined />} showSearch onSearch={handleSearch} onChange={handleSearchSelect} value={searchValue ? searchValue : null} placeholder={"Search From 1000+ Products"} style={{width: "100%", marginBottom: "20px"}} defaultActiveFirstOption={false} filterOption={false} notFoundContent={searchLoading ? <Spin size="small" /> : null} options={searchOptions}/>
                     <p className="pageTitle primaryColorUnderline">100% Vegan</p>
                     <div className={homeStyles.homeCategories}>{home_categories.map(d=>getCategoryDiv(d))}</div>
                     <div className={homeStyles.homeLink}><a onClick={openMenu}>Explore More Categories</a></div>
