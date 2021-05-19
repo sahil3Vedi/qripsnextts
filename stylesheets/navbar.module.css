@@ -26,6 +26,11 @@
     font-size: 30px;
 }
 
+.navbarIcon{
+    color: white;
+    font-size: 30px;
+}
+
 .navbarProfile{
     height: 80px;
     background-color: green;

@@ -1,20 +1,23 @@
 // REACT
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
+import { useCartContext } from '../context/cart'
 // NEXT
 import Link from 'next/link'
 // ANT
-import { Drawer, Menu, Avatar, Affix } from 'antd'
+import { Drawer, Menu, Avatar, Affix, Badge } from 'antd'
 import { MenuOutlined, ShoppingOutlined, SmileOutlined  } from '@ant-design/icons'
 const { SubMenu } = Menu
 // IMAGES
 //import imageModule from '../types/images'
 const logoImage = require('../images/qripstranspwhite.png')
-const emptyCartImage = require('../images/emptyCart.png')
+const emptyCartImage = require('../images/emptyCart.svg')
 // CSS
 import navbarStyles from '../stylesheets/navbar.module.css'
 const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignItems: "center",fontSize: "30px",marginTop: "5px"}
 
 const Navbar = forwardRef(({}, ref: any) => {
+
+    const { cart }: any = useCartContext()
 
     const [menuVisible, setMenuVisible] = useState(false)
     const [cartVisible, setCartVisible] = useState(false)
@@ -36,7 +39,7 @@ const Navbar = forwardRef(({}, ref: any) => {
             <div className={navbarStyles.navbarTop}>
                 <div className={navbarStyles.navbarIconDiv} onClick={()=>setMenuVisible(true)}><MenuOutlined/></div>
                 <div className={navbarStyles.navbarLogoDiv}><img className={navbarStyles.navbarLogo} src={logoImage}/></div>
-                <div className={navbarStyles.navbarIconDiv} onClick={()=>setCartVisible(true)}><ShoppingOutlined/></div>
+                <div className={navbarStyles.navbarIconDiv} onClick={()=>setCartVisible(true)}><Badge count={cart.length}><ShoppingOutlined className={navbarStyles.navbarIcon}/></Badge></div>
             </div>
             </Affix>
             <Drawer placement="left" closable={false} onClose={()=>setMenuVisible(false)} visible={menuVisible}>

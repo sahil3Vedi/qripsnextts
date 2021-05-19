@@ -60,3 +60,7 @@
 .ant-carousel ul{
     margin-bottom: 0px;
 }
+
+.ant-badge-count {
+    box-shadow: none;
+}

@@ -1,5 +1,7 @@
 // import App from 'next/app'
 import { AppProps } from 'next/app'
+// CONTEXT
+import { CartWrapper } from '../context/cart'
 
 import 'antd/dist/antd.css'
 import '../stylesheets/ant.css'
@@ -7,9 +9,11 @@ import '../stylesheets/antoverride.css'
 import '../stylesheets/global.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <div>
-    <Component {...pageProps} />
-  </div>
+  return (
+    <CartWrapper>
+      <Component {...pageProps} />
+    </CartWrapper>
+  )
 }
 
 // Only uncomment this method if you have blocking data requirements for
