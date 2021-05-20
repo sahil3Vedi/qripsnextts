@@ -35,6 +35,29 @@
     border: 1px solid #008000;
 }
 
+.btnWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.btnAddToCart{
+    color: #008000;
+    border: 1px solid #008000;
+}
+
+.btnPlus{
+    margin-left: 20px;
+}
+
+.btnMinus{
+    margin-right: 20px;
+}
+
+.cartValue{
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .productWeightPricing{
     display: grid;
     grid-template-columns: auto 1fr auto;

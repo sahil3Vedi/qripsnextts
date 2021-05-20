@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 20 !important;
 }
 
 .navbarIconDiv{
@@ -66,4 +67,71 @@
 .emptyCartImage{
     width: 70%;
     margin-top: 50px;
+}
+
+.cartWrapper{
+    padding: 20px;
+}
+
+.cartImage{
+    width: 100%;
+}
+
+.cartItem{
+    display: grid;
+    grid-template-columns: 1fr 1fr 20px;
+    column-gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px 5px #2f2f2f20;
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+
+.cartName{
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.cartCompany{
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btnWrapper{
+    display: grid;
+    grid-template-rows: 25px 22px 25px 25px;
+    height: 80px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.btnWrapper p{
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.btnRed{
+    color: #ff7875;
+    cursor: pointer;
+}
+
+.btnGreen{
+    color: #52c41a;
+    cursor: pointer;
+}
+
+.subTotal{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.grandTotal{
+    font-weight: bold;
+    font-size: 20px;
+    color: #008000
 }

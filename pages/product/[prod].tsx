@@ -1,10 +1,11 @@
 // REACT
 import React, { useState, useEffect } from 'react'
+import { useCartContext } from '../../context/cart'
 // NEXT
 import { useRouter } from 'next/router'
 // ANT
 import { Spin, Carousel, Button } from 'antd'
-import { LeftOutlined } from '@ant-design/icons'
+import { LeftOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons'
 // COMPONENTS
 import Navbar from '../../components/navbar'
 import GlobalStyle from '../../stylesheets/globalStyle'
@@ -27,14 +28,32 @@ interface Prod{
 }
 
 const Product = () => {
+    const [prodCount, setProdCount] = useState(0)
+    const { cart }: any = useCartContext()
+    const { addToCart }: any = useCartContext()
+    const { removeFromCart }: any = useCartContext()
+    const addProd = () => addToCart(productInfo._id, productInfo.name, productInfo.company, productInfo.imgs[0], productInfo.unit_price)
+    const removeProd = () => removeFromCart(productInfo._id)
 
     const router = useRouter()
     const product = router.query.prod
     const [productInfo, setProductInfo] = useState<Prod>({} as Prod)
     const [loadingProduct, setLoadingProduct] = useState(true)
 
+    useEffect(()=>{
+        // Effect Handler for Updating Cart Context
+        let temp_count = 0
+        for (var prod in cart){
+            if (productInfo._id === cart[prod].id){
+                temp_count = cart[prod].qty
+            }
+        }
+        setProdCount(temp_count)
+    },[productInfo, cart, product])
+
     useEffect(() => {
         setLoadingProduct(true)
+        // Effect Handler for Fetching Product Info
         axios.get(`${process.env.NEXT_PUBLIC_BACKEND}dummy/fetchAll/${window.location.pathname.split('/')[2]}`)
         .then(res=>{
             setProductInfo(res.data.message[0])
@@ -77,7 +96,9 @@ const Product = () => {
                             </div>
                             <p className={productStyles.productDescription}>{productInfo.description}</p>
                             <div className={productStyles.btnWrapper}>
-                                <Button className={productStyles.btnAddToCart} size="large">Add To Cart</Button>
+                                <div>{prodCount ? <Button shape="circle" icon={<MinusOutlined/>} className={productStyles.btnMinus} type="primary" danger onClick={removeProd}/> : null}</div>
+                                <div>{prodCount ? <p className={productStyles.cartValue}>{prodCount}</p> : <Button className={productStyles.btnAddToCart} onClick={addProd}>Add to Cart</Button>}</div>
+                                <div>{prodCount ? <Button shape="circle" icon={<PlusOutlined/>} className={productStyles.btnPlus} type="primary" onClick={addProd}/> : null}</div>
                             </div>
                         </div>
                     }

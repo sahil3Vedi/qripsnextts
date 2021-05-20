@@ -11,11 +11,9 @@ import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
 
 const ItemPreview = (props: any) => {
     const [prodCount, setProdCount] = useState(0)
-
     const { cart }: any = useCartContext()
     const { addToCart }: any = useCartContext()
     const { removeFromCart }: any = useCartContext()
-
     const addProd = () => addToCart(props.data._id, props.data.name, props.data.company, props.data.imgs[0], props.data.unit_price)
     const removeProd = () => removeFromCart(props.data._id)
 

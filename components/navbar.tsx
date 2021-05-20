@@ -5,10 +5,9 @@ import { useCartContext } from '../context/cart'
 import Link from 'next/link'
 // ANT
 import { Drawer, Menu, Avatar, Affix, Badge } from 'antd'
-import { MenuOutlined, ShoppingOutlined, SmileOutlined  } from '@ant-design/icons'
+import { MenuOutlined, ShoppingOutlined, SmileOutlined, PlusOutlined, MinusOutlined, DeleteOutlined  } from '@ant-design/icons'
 const { SubMenu } = Menu
 // IMAGES
-//import imageModule from '../types/images'
 const logoImage = require('../images/qripstranspwhite.png')
 const emptyCartImage = require('../images/emptyCart.svg')
 // CSS
@@ -17,7 +16,23 @@ const navbarAvatarIconStyle = {display: "flex",justifyContent: "center",alignIte
 
 const Navbar = forwardRef(({}, ref: any) => {
 
+    const [grandTotal, setGrandTotal] = useState(0)
     const { cart }: any = useCartContext()
+    const { addToCart }: any = useCartContext()
+    const { removeFromCart }: any = useCartContext()
+    const { deleteFromCart }: any = useCartContext()
+
+    useEffect(() => {
+        let temp_total = 0
+        for (var prod in cart){
+            temp_total += cart[prod].unit_price * cart[prod].qty
+        }
+        setGrandTotal(temp_total)
+    }, [cart] );
+
+    const addProd = (d: any) => addToCart(d.id, d.name, d.company, d.img, d.unit_price)
+    const removeProd = (d: any) => removeFromCart(d.id)
+    const deleteProd = (d: any) => deleteFromCart(d.id)
 
     const [menuVisible, setMenuVisible] = useState(false)
     const [cartVisible, setCartVisible] = useState(false)
@@ -109,11 +124,26 @@ const Navbar = forwardRef(({}, ref: any) => {
                 </Menu>
             </Drawer>
             <Drawer placement="right" closable onClose={()=>setCartVisible(false)} visible={cartVisible} title="Your Cart">
-                <div className={navbarStyles.emptyCartWrapper}>
-                    <img src={emptyCartImage} className={navbarStyles.emptyCartImage}/>
-                    <p>Your Cart Is Empty</p>
-                    <a onClick={()=>setCartVisible(false)}>Back to Shop</a>
-                </div>
+                {
+                    cart.length
+                    ?
+                    <div className={navbarStyles.cartWrapper}>
+                        {cart.map((d: any)=>
+                            <div key={d.id} className={navbarStyles.cartItem}>
+                                <div><img src={d.img} className={navbarStyles.cartImage}/><p className={navbarStyles.subTotal}>{`₹${d.unit_price} x ${d.qty}`}</p></div>
+                                <div className={navbarStyles.cartInfo}><p className={navbarStyles.cartCompany}>{d.company}</p><p className={navbarStyles.cartName}>{d.name}</p></div>
+                                <div className={navbarStyles.btnWrapper}><div><PlusOutlined className={navbarStyles.btnGreen} onClick={()=>addProd(d)}/></div><div><p>{d.qty}</p></div><div><MinusOutlined className={navbarStyles.btnRed} onClick={()=>removeProd(d)}/></div><div><DeleteOutlined className={navbarStyles.btnRed} onClick={()=>deleteProd(d)}/></div></div>
+                            </div>
+                        )}
+                        <p className={navbarStyles.grandTotal}>{`Total: ₹${grandTotal}`}</p>
+                    </div>
+                    :
+                    <div className={navbarStyles.emptyCartWrapper}>
+                        <img src={emptyCartImage} className={navbarStyles.emptyCartImage}/>
+                        <p>Your Cart Is Empty</p>
+                        <a onClick={()=>setCartVisible(false)}>Back to Shop</a>
+                    </div>
+                }
             </Drawer>
         </div>
     )
