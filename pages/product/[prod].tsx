@@ -92,7 +92,13 @@ const Product = () => {
                             <div className={productStyles.productWeightPricing}>
                                 <div><p>&#x20B9;{productInfo.unit_price}</p></div>
                                 <div></div>
-                                <div><p>{productInfo.unit_weight}g</p></div>
+                                {
+                                    productInfo.is_liquid
+                                    ?
+                                    <div><p>{productInfo.unit_capacity>999 ? productInfo.unit_capacity/1000 : productInfo.unit_capacity}{productInfo.unit_capacity>999 ? "L" : "ml"}</p></div>
+                                    :
+                                    <div><p>{productInfo.unit_weight>999 ? productInfo.unit_weight/1000 : productInfo.unit_weight}{productInfo.unit_weight>999 ? "Kg" : "g"}</p></div>
+                                }
                             </div>
                             <p className={productStyles.productDescription}>{productInfo.description}</p>
                             <div className={productStyles.btnWrapper}>

@@ -16,7 +16,8 @@ import axios from 'axios'
 import shelfStyles from '../../stylesheets/shelf.module.css'
 
 const categoryMap: any = {
-    "cheese":["Blocks","Shredded","Slices","Dips"]
+    "cheese":["Blocks","Shredded","Slices","Dips"],
+    "milk":["Soy Milk","Almond Milk","Cashew Milk","Coconut Milk","Flax Milk","Hemp Milk","Oat Milk","Rice Milk"],
 }
 
 function capitalize(str: string) {
@@ -109,10 +110,17 @@ const Products = () => {
 
     const filter = (
         <Modal centered title="Filter Products" visible={filterVisible} onOk={()=>applyFilter()} onCancel={()=>setFilterVisible(false)} okText="Apply">
-            <p className={shelfStyles.filterTypeTitle} style={{marginTop: 0}}>Category</p>
-            <Checkbox.Group style={{ width: '100%' }} onChange={setFilterCategories}>
-                {categories.map(d=><Row key={d}><Col><Checkbox value={d.toLowerCase()}>{d}</Checkbox></Col></Row>)}
-            </Checkbox.Group>
+            {
+                categories.length ?
+                <div>
+                    <p className={shelfStyles.filterTypeTitle} style={{marginTop: 0}}>Category</p>
+                    <Checkbox.Group style={{ width: '100%' }} onChange={setFilterCategories}>
+                        {categories.map(d=><Row key={d}><Col><Checkbox value={d.toLowerCase()}>{d}</Checkbox></Col></Row>)}
+                    </Checkbox.Group>
+                </div>
+                :
+                null
+            }
             <p className={shelfStyles.filterTypeTitle}>Company</p>
             <Checkbox.Group style={{ width: '100%' }} onChange={setFilterCompanies}>
                 {companies.map(d=><Row key={d}><Col><Checkbox value={d}>{d}</Checkbox></Col></Row>)}

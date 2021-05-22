@@ -41,7 +41,12 @@ const ItemPreview = (props: any) => {
                 <div className={shelfStyles.productWeightPricing}>
                     <div className={shelfStyles.productWeight}><p>&#x20B9;{props.data.unit_price}/-</p></div>
                     <div></div>
-                    <div className={shelfStyles.productWeight}><p>{props.data.unit_weight}g</p></div>
+                    {
+                        props.data.is_liquid ?
+                        <div className={shelfStyles.productWeight}><p>{props.data.unit_capacity>999 ? props.data.unit_capacity/1000 : props.data.unit_capacity}{props.data.unit_capacity>999 ? "L" : "ml"}</p></div>
+                        :
+                        <div className={shelfStyles.productWeight}><p>{props.data.unit_weight>999 ? props.data.unit_weight/1000 : props.data.unit_weight}{props.data.unit_weight>999 ? "Kg" : "g"}</p></div>
+                    }
                 </div>
                 </div>
                 </Link>
