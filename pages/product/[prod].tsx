@@ -24,7 +24,9 @@ interface Prod{
     unit_weight: number,
     imgs: string[],
     _id: string,
-    description: string
+    description: string,
+    is_liquid: Boolean,
+    unit_capacity: number
 }
 
 const Product = () => {
