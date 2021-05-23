@@ -170,7 +170,7 @@ const Products = () => {
                                             {filteredProducts.slice((currentPage-1)*10, (currentPage)*10).map(d=><ItemPreview key={d._id} data={d}/>)}
                                         </div></div>
                                         <div className={shelfStyles.paginationDiv}>
-                                            <Pagination current={currentPage} total={filteredProducts.length + 1} onChange={updatePage}/>
+                                            <Pagination current={currentPage} total={filteredProducts.length} onChange={updatePage}/>
                                         </div>
                                     </div>
                                     :
