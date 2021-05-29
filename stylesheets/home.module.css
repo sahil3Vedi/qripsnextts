@@ -12,6 +12,7 @@
     height: 50px;
     margin: 0px auto;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .homeCategoryImage{

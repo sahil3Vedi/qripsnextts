@@ -1,5 +1,6 @@
 // NEXT
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 // REACT
 import React, {useRef, useState} from 'react'
 // COMPONENTS
@@ -20,18 +21,18 @@ interface SearchValue{
 }
 
 const home_categories = [
-    {color:"#FFEDBB",name:"Cheese",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/10289/cheese.svg'},
-    {color:"#FFC6C6",name:"Sauces",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/244467/sauce.svg'},
-    {color:"#D2E7FF",name:"Milk",link:"plant-based-milk",svgurl:'https://www.svgrepo.com/show/113426/milk-bottle.svg'},
-    {color:"#FFC6C6",name:"Skincare",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/123846/cosmetics.svg'},
-    {color:"#E8FFC6",name:"Beverages",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/285923/drink-soft-drink.svg'},
-    {color:"#FFEDBB",name:"Unfrozen Meat",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/297199/sausage.svg'},
-    {color:"#FFC6C6",name:"Frozen Meat",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/297209/meat.svg'},
-    {color:"#FFEDBB",name:"Cosmetics",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/299829/cosmetics-ointment.svg'},
-    {color:"#FFEDBB",name:"Tofu",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/85280/tofu.svg'},
-    {color:"#E8FFC6",name:"Dry Fruits",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/196387/hazelnuts-almond.svg'},
-    {color:"#FFEDBB",name:"Biscuits",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/186236/cookie.svg'},
-    {color:"#D2E7FF",name:"Butter",link:"plant-based-cheese",svgurl:'https://www.svgrepo.com/show/276537/butter-butter.svg'}
+    {color:"#FFEDBB",name:"Cheese",link:"cheese",svgurl:'https://www.svgrepo.com/show/10289/cheese.svg'},
+    {color:"#FFC6C6",name:"Sauces",link:"sauces",svgurl:'https://www.svgrepo.com/show/244467/sauce.svg'},
+    {color:"#D2E7FF",name:"Milk",link:"milk",svgurl:'https://www.svgrepo.com/show/113426/milk-bottle.svg'},
+    {color:"#FFC6C6",name:"Skincare",link:"skincare",svgurl:'https://www.svgrepo.com/show/123846/cosmetics.svg'},
+    {color:"#E8FFC6",name:"Beverages",link:"beverages",svgurl:'https://www.svgrepo.com/show/285923/drink-soft-drink.svg'},
+    {color:"#FFEDBB",name:"Unfrozen Meat",link:"unfrozen meat",svgurl:'https://www.svgrepo.com/show/297199/sausage.svg'},
+    {color:"#FFC6C6",name:"Frozen Meat",link:"frozen meat",svgurl:'https://www.svgrepo.com/show/297209/meat.svg'},
+    {color:"#FFEDBB",name:"Cosmetics",link:"cosmetics",svgurl:'https://www.svgrepo.com/show/299829/cosmetics-ointment.svg'},
+    {color:"#FFEDBB",name:"Tofu",link:"tofu",svgurl:'https://www.svgrepo.com/show/85280/tofu.svg'},
+    {color:"#E8FFC6",name:"Dry Fruits",link:"dry fruits",svgurl:'https://www.svgrepo.com/show/196387/hazelnuts-almond.svg'},
+    {color:"#FFEDBB",name:"Biscuits",link:"biscuits",svgurl:'https://www.svgrepo.com/show/186236/cookie.svg'},
+    {color:"#D2E7FF",name:"Butter",link:"butter",svgurl:'https://www.svgrepo.com/show/276537/butter-butter.svg'}
 ]
 
 const getCategoryDiv = (d: any) => {
@@ -39,7 +40,7 @@ const getCategoryDiv = (d: any) => {
         return (
         <div key={d.name}>
             <div style={{backgroundColor:d.color}} className={homeStyles.homeCategory}>
-                <img src={svgurl} className={homeStyles.homeCategoryImage} alt="product-category"/>
+                <Link href={`products/${d.link}`}><img src={svgurl} className={homeStyles.homeCategoryImage} alt="product-category"/></Link>
             </div>
             <p>{d.name}</p>
         </div>
