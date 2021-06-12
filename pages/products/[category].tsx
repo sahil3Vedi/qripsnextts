@@ -167,10 +167,10 @@ const Products = () => {
                                     filteredProducts.length ?
                                     <div className={shelfStyles.shelfBody}>
                                         <div><div className={shelfStyles.shelf}>
-                                            {filteredProducts.slice((currentPage-1)*10, (currentPage)*10).map(d=><ItemPreview key={d._id} data={d}/>)}
+                                            {filteredProducts.slice((currentPage-1)*12, (currentPage)*12).map(d=><ItemPreview key={d._id} data={d}/>)}
                                         </div></div>
                                         <div className={shelfStyles.paginationDiv}>
-                                            <Pagination current={currentPage} total={filteredProducts.length} onChange={updatePage}/>
+                                            <Pagination current={currentPage} total={Math.ceil(filteredProducts.length/1.2)} onChange={updatePage}/>
                                         </div>
                                     </div>
                                     :

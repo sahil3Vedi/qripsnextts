@@ -41,3 +41,14 @@ a{
 .pointer{
     cursor: pointer;
 }
+
+@media only screen and (min-width: 1500px) {
+    .pageContent{
+        width: 1500px;
+        margin-left: calc(50% - 750px)!important;
+    }
+
+    .pageTitle{
+        margin-bottom: 30px;
+    }
+}
